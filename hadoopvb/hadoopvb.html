@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<!--
+	Iridium by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Hadoop Basics</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+		<div id="header">
+			<div class="container"> 
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="#">HADOOP CLUSTER</a></h1>
+					<span>SETTING UP A HADOOP CLUSTER</span>
+				</div>
+				
+				<!-- Nav -->
+				
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div id="main">
+			<div class="container">
+				<div class="row"> 
+
+					<!-- Content -->
+					<div id="content" class="8u skel-cell-important">
+						<section>
+							<header>
+								<h2>Setting up Hadoop cluster</h2>
+								<span class="byline">A two node Hadoop Cluster using Oracle virtual box </span>
+							</header>
+							<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a>
+							<p><strong>What is a Hadoop Cluster?</strong></p>
+<p>Hadoop is basically a group of machines running together in parallel to process your job. There will be one computer that acts as the main controller which is called the name node and several other computers called the data node or slave nodes. All these computers together are called a cluster. In our example, we will be creating one name node and two data nodes- A group of 3 computers, 1 name node and 2 data nodes- A 3 NODE HADOOP CLUSTER!</p>
+<p><strong>But I just have one computer.</strong><strong>&nbsp;Should I buy 2 other computer to set this up?</strong></p>
+<p>Absolutely not! That&rsquo;s where we use a virtual machine. A virtual box is a software which can create a &lsquo;computer&rsquo; inside of your own computer. You cannot touch these computers because they are virtual!! Confused? It will be clear once we start creating new machine inside our own computer. We will be using Oracle Virtual Box to create 3 Linux machine (one name node and 2 data node) inside a Windows machine. Pretty amazing huh?!!</p>
+<p><strong>Building a virtual Linux machine on your computer.</strong>&nbsp;</p>
+<p>Download and install Oracle virtual box (Just type download oracle virtual box in google and the first link will give you an exe file to install oracle virtual box software.)</p>
+<p>Now download Linux iso image. and save it on your computer. In this example I will be using Ubuntu 14.0.2 , one of the many linux operating system(again google Ubuntu download) A Linux Iso image is like a cd with Linux software. Just like you put a cd into a cd drive in a computer you give a path to this iso image to install Linux on your virtual machine.</p>
+<p>Once Oracle virtual box is installed it will look like this.&nbsp;</p>
+<p>&nbsp;</p>
+<p>Now we have three 1 GB RAM, 20 GB Hard Disk Linux machines inside of our Windows machine. Ideally Name node should have more RAM (as name node stores the metadata in RAM rather than hard disk. This would save the extra read/write time if the metadata was in hard disk as opposed to RAM ) and Data nodes should have more hard disk (as data node stores all the files)</p>
+<p>Ok so lets go and set up our cluster now that we have three machines.</p>
+<p>&nbsp;</p>
+<p>First know that there are 3 modes to setup a hadoop cluster;</p>
+<ul>
+<li>Standalone Mode</li>
+<li>Pseudo distributed mode</li>
+<li>Fully distributed mode</li>
+</ul>
+<p>We will be covering all these modes as it takes only few changes in the configuration files to do that.</p>
+<p>&nbsp;</p>
+<p>Lets start with the name node setup;</p>
+<ul>
+<li>Install java</li>
+<li>Install openssh</li>
+<li>Download any stable hadoop tar file from apache website and save it to any location. We will be using hadoop 2.7.2 for this example. A tar file is just like a zip file in windows.</li>
+<li>Untar (unzip) the hadoop tar file.</li>
+<li>Update hadoop-env.sh to let hadoop know where java is installed.</li>
+<li>Change bashrc file to let Ubuntu know where java and hadoop is installed</li>
+</ul>
+<p><strong>That&rsquo;s it!! You have installed hadoop in Stand alone mode!!</strong></p>
+<ul>
+<li>Change Core-site.xml, Hdfs-site.xml and Mapred-site.xml</li>
+</ul>
+<p><strong>You now have pseudo distributed Hadoop installed!!</strong></p>
+<ul>
+<li>Update slaves file and set up the data nodes and we have fully distributed cluster</li>
+</ul>
+<p>Lets go into detail of each step. Remember we are in our name node Linux machine now.</p>
+<p><strong>Install java</strong></p>
+<ul>
+<li>Open a terminal (terminal is Windows cmd line equivalent for Linux)</li>
+<li>Type sudo apt-get install openjdk-7-jdk</li>
+</ul>
+<p>This will install java in your machine. Check by typing java &ndash;version</p>
+<p><strong>Install openssh</strong></p>
+<ul>
+<li>In terminal type sudo apt-get install openssh-server</li>
+</ul>
+<p>This will install openssh in your machine and you will be able to ssh to your machine. Check by typing ssh localhost . Localhost is nothing but your current machine. Your OS is intelligent enough to understand that.</p>
+<p>More on ssh &ndash;coming soon</p>
+<p>You might have noticed it asks for password when you ssh to your machine. Lets get rid of this;</p>
+<ul>
+<li>ssh-keygen -t rsa -P ''</li>
+<li>cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</li>
+</ul>
+<p>No more passwords to ssh to your machine. J</p>
+<p><strong>Download and save Hadoop tar file</strong></p>
+						</section>
+					</div>
+					
+					<!-- Sidebar -->
+					<div id="sidebar" class="4u">
+						<section>
+							<header>
+								<h2>Other Tutorials</h2>
+							</header>
+							<ul class="style">
+								<li>
+									<p class="posted">August 11, 2002  |  (10 )  Comments</p>
+									<img src="images/pic04.jpg" alt="" />
+									<p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</p>
+								</li>
+								<li>
+									<p class="posted">August 11, 2002  |  (10 )  Comments</p>
+									<img src="images/pic05.jpg" alt="" />
+									<p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</p>
+								</li>
+								
+							</ul>
+						</section>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div id="featured">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<h2>Previous Tutorial</h2>
+						<a href="#" class="image full"><img src="images/pic01.jpg" alt="" /></a>
+						<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
+						
+					</div>
+					<div class="4u">
+						<h2>Next Tutorial</h2>
+						<a href="#" class="image full"><img src="images/pic02.jpg" alt="" /></a>
+						<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+
+		
+		
+	</body>
+</html>
