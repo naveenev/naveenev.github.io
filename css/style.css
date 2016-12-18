@@ -698,7 +698,7 @@ footer p {
 /* ==========================================================================
 media quires for mobile
 ========================================================================== */
-@media (max-width: 440px) {
+@media (max-width: 670px) {
   #home {
     padding-top: 320px;
     padding-bottom: 320px;
