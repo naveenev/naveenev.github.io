@@ -54,7 +54,7 @@
 								<span class="byline">A two node Hadoop Cluster using Oracle virtual box </span>
 							</header>
 							<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a>
-							<p><strong>What is a Hadoop Cluster?</strong></p>
+<p><strong>What is a Hadoop Cluster?</strong></p>
 <p>Hadoop is basically a group of machines running together in parallel to process your job. There will be one computer that acts as the main controller which is called the name node and several other computers called the data node or slave nodes. All these computers together are called a cluster. In our example, we will be creating one name node and two data nodes- A group of 3 computers, 1 name node and 2 data nodes- A 3 NODE HADOOP CLUSTER!</p>
 <p><strong>But I just have one computer.</strong><strong>&nbsp;Should I buy 2 other computer to set this up?</strong></p>
 <p>Absolutely not! That&rsquo;s where we use a virtual machine. A virtual box is a software which can create a &lsquo;computer&rsquo; inside of your own computer. You cannot touch these computers because they are virtual!! Confused? It will be clear once we start creating new machine inside our own computer. We will be using Oracle Virtual Box to create 3 Linux machine (one name node and 2 data node) inside a Windows machine. Pretty amazing huh?!!</p>
@@ -64,34 +64,34 @@
 <p>Once Oracle virtual box is installed it will look like this.&nbsp;</p>
 <p>&nbsp;</p>
 <p>Now we have three 1 GB RAM, 20 GB Hard Disk Linux machines inside of our Windows machine. Ideally Name node should have more RAM (as name node stores the metadata in RAM rather than hard disk. This would save the extra read/write time if the metadata was in hard disk as opposed to RAM ) and Data nodes should have more hard disk (as data node stores all the files)</p>
-<p>Ok so lets go and set up our cluster now that we have three machines.</p>
-<p>&nbsp;</p>
-<p>First know that there are 3 modes to setup a hadoop cluster;</p>
-<ul>
-<li>Standalone Mode</li>
-<li>Pseudo distributed mode</li>
-<li>Fully distributed mode</li>
-</ul>
-<p>We will be covering all these modes as it takes only few changes in the configuration files to do that.</p>
-<p>&nbsp;</p>
-<p>Lets start with the name node setup;</p>
-<ul>
+<p><strong>Now we have 3 Linux machines!!</strong></p>
+<p>Lets setup the hadoop cluster now: There are 3 modes to setup a hadoop cluster;</p>
+
+<li><strong> Standalone Mode</strong> - Name node and data node in one single machine and one jvm</li>
+<li><strong> Pseudo-distributed mode</strong> -&nbsp;Name node and data node in one single machine and multiple&nbsp;jvm's</li>
+<li><strong> Fully distributed mode</strong> -&nbsp;Name node and data node in different single machines</li>
+
+<p>You may be thinking what a jvm is?</p>
+<p>We will be covering all these modes as it takes only few&nbsp;property changes in the configuration files to switch modes.</p>
+<p><strong>Step-Summary</strong></p>
+
 <li>Install java</li>
 <li>Install openssh</li>
 <li>Download any stable hadoop tar file from apache website and save it to any location. We will be using hadoop 2.7.2 for this example. A tar file is just like a zip file in windows.</li>
 <li>Untar (unzip) the hadoop tar file.</li>
 <li>Update hadoop-env.sh to let hadoop know where java is installed.</li>
 <li>Change bashrc file to let Ubuntu know where java and hadoop is installed</li>
-</ul>
-<p><strong>That&rsquo;s it!! You have installed hadoop in Stand alone mode!!</strong></p>
-<ul>
-<li>Change Core-site.xml, Hdfs-site.xml and Mapred-site.xml</li>
-</ul>
-<p><strong>You now have pseudo distributed Hadoop installed!!</strong></p>
-<ul>
-<li>Update slaves file and set up the data nodes and we have fully distributed cluster</li>
-</ul>
-<p>Lets go into detail of each step. Remember we are in our name node Linux machine now.</p>
+
+<p><strong>&nbsp; &nbsp; &nbsp; &nbsp;That&rsquo;s it!! You have installed hadoop in Stand alone mode!!</strong></p>
+<p><li> Change Core-site.xml, Hdfs-site.xml and Mapred-site.xml</li></p>
+<p><strong>&nbsp; &nbsp; &nbsp; You now have pseudo distributed Hadoop installed!!</strong></p>
+
+<li>Update Core-site.xml, Hdfs-site.xml and Mapred-site.xml and slaves file</li>
+<li>Copy the configuration files to data nodes.</li>
+
+<p>&nbsp; &nbsp; &nbsp; <strong>We now have a 3 node Hadoop cluster !!!</strong></p>
+</t>
+<p><strong>Let's go into detail of each step. Remember we are in our name node Linux machine now.</strong></p>
 <p><strong>Install java</strong></p>
 <ul>
 <li>Open a terminal (terminal is Windows cmd line equivalent for Linux)</li>
