@@ -501,22 +501,23 @@ portfolio section
     width: 100%;
 }
 .iso-box-wrapper {
-    width: 100%;
-    padding: 0;
+    width: 65%;
+    padding:0;
+    margin: 0 auto;
     clear: both;
-    position: relative;
+    position: relative
 }
 .iso-box {
     position: relative;
-    min-height: 50px;
-    float: left;
+    min-height: 10px;
+    float: right;
     overflow: hidden;
     margin-bottom: 20px;
 }
 .iso-box > a {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     overflow: hidden;
 }
 .iso-box > a {
